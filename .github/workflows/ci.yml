@@ -50,6 +50,7 @@ jobs:
           echo ::set-output name=version_major::${VERSION_MAJOR}
           echo ::set-output name=build_date::$(date -u +'%Y-%m-%dT%H:%M:%SZ')
 
+
       - name: Fill GHCR Docker ElasticMS Admin Prod Image metadata
         id: meta_ghcr_prd
         uses: crazy-max/ghaction-docker-meta@v3.1.0
@@ -87,6 +88,7 @@ jobs:
 
       - name: Fill DockerHub Docker ElasticMS Admin Dev Image metadata
         id: meta_dockerhub_dev
+
         uses: crazy-max/ghaction-docker-meta@v3.1.0
         with:
           images: "${{ steps.prep.outputs.dockerhub_dev_image }}"
@@ -126,6 +128,7 @@ jobs:
 
       - name: Build GHCR ElasticMS Admin Prod Docker Image
         id: build_ghcr_prd_image
+
         uses: docker/build-push-action@v2.4.0
         with:
           builder: ${{ steps.buildx.outputs.name }}
